@@ -1,0 +1,25 @@
+{
+  "name": "tutu",
+  "version": "2.0.0",
+  "description": "A simple AWS Lambda and ApiGateway Deployer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroorez/tutu.git"
+  },
+  "keywords": [
+    "AWS",
+    "Lambda",
+    "ApiGateway",
+    "Deployer"
+  ],
+  "author": "Pedro Correa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedroorez/tutu/issues"
+  },
+  "homepage": "https://github.com/pedroorez/tutu#readme"
+}
