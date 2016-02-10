@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/pedroorez/tutu/issues"
   },
-  "homepage": "https://github.com/pedroorez/tutu#readme"
+  "homepage": "https://github.com/pedroorez/tutu#readme",
   "dependencies": {
     "aws-sdk": "^2.2.34",
     "fs-finder": "^1.8.1"
