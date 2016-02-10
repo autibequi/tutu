@@ -9,6 +9,7 @@ var endpointsFilePath = aux.getRootFolder() + '/' + SETTINGS.ENDPOINTS_FILENAME
 
 apigateway.purgeApi()
   .then(() => dataProcess.buildLambdaURI('arn:aws:lambda:us-east-1:522617982767:function:dev-ManageProjectsId-GET'))
-  .then(() => fs.readFileSync(endpointsFilePath, 'utf8'))
+  .then(() => JSON.parse(fs.readFileSync(endpointsFilePath, 'utf8')))
+  .then(dataProcess.prepareRootResources)
   .then((data) => console.log(data))
   .catch((err) => console.log(err.stack))
