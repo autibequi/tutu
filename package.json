@@ -22,4 +22,7 @@
     "url": "https://github.com/pedroorez/tutu/issues"
   },
   "homepage": "https://github.com/pedroorez/tutu#readme"
+  "dependencies": {
+    "aws-sdk": "^2.2.34",
+  }
 }
