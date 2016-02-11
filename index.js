@@ -1,13 +1,16 @@
-
+var lambda = require('./lib/lambda.js')
 var apigateway = require('./lib/apigateway.js')
 var deploy = require('./lib/deploy.js')
 var dataProcess = require('./lib/dataProcess.js')
 var aux = require('./lib/aux.js')
+var packagers = require('./lib/packagers.js')
 var SETTINGS = require('./lib/settings.js').constants
 
-
 apigateway.purgeApi()
-  .then(() => dataProcess.buildLambdaURI('arn:aws:lambda:us-east-1:522617982767:function:dev-ManageProjectsId-GET'))
+  .then(packagers.buildUnifiedLambdaPackage)
+  .then(aux.loadLambdaConfiguration)
+  .then(lambda.deployLambdaFunction)
+  .then(dataProcess.buildLambdaURI)
   .then(aux.loadEndpointData)
   .then(dataProcess.prepareRootResources)
   .then(deploy.deployResources)
