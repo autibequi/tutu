@@ -41,7 +41,8 @@
     "Handler": "aws_modules/index.handler",
     "MemorySize": 128,
     "Runtime": "nodejs",
-    "Timeout": 6
+    "Timeout": 6,
+    "Description": "Nuthing"
   },
   "ApiGateway": {
     "RequestParameters": {
