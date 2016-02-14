@@ -4,19 +4,20 @@
       "Endpoint": "clients",
       "Path": "clients",
       "Methods": ["GET"],
+      "Standalone": true,
+      "Parameters": ["ida", "pokemon", "id_date"],
       "Resources": [
         {
           "Endpoint": "{clientId}",
-          "Methods": [],
           "Resources": [
             {
               "Endpoint": "pricelists",
               "Path": "clients/pricelists",
               "Methods": ["GET"],
+              "Standalone": true,
               "Resources": [
                 {
                   "Endpoint": "{priceListId}",
-                  "Methods": [],
                   "Resources": [
                     {
                       "Endpoint": "roles",
@@ -50,21 +51,21 @@
     },
     "Responses": [
       {
-        "regex": "BAD REQUEST.*",
+        "selectionPattern": "BAD REQUEST.*",
         "statusCode": "400",
         "responseParameters": {
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         }
       },
       {
-        "regex": "UNAUTHORIZED.*",
+        "selectionPattern": "UNAUTHORIZED.*",
         "statusCode": "401",
         "responseParameters": {
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         }
       },
       {
-        "regex": "default",
+        "selectionPattern": null,
         "statusCode": "200",
         "responseParameters": {
           "method.response.header.Access-Control-Allow-Origin": "'*'"
