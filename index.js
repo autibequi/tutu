@@ -6,8 +6,7 @@ var packagers = require('./lib/packagers.js')
 var SETTINGS = require('./lib/settings.js').constants
 
 apigateway.purgeApi()
-  .then(packagers.buildUnifiedLambdaPackage)
-  .then(dataProcess.buildUnifiedLambdaFunction)
+  .then(packagers.buildUnifiedLambdaFunction)
   .then(lambda.deployLambdaFunction)
   .then(lambda.addResourceBasedPermissionToAPI)
   .then(dataProcess.buildLambdaURI)
