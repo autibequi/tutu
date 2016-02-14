@@ -19,6 +19,8 @@ if (process.argv[2]) {
       .catch((err) => console.log(err.stack))
   } else if(process.argv[2] == 'runserver') {
     require('../lib/server.js')
+  } else if(process.argv[2] == 'run') {
+    require('./runner.js')
   } else {
     console.log('Bad argument, value, try again...');
   }
