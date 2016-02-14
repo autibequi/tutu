@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+if (process.argv[2]) {
+  if(process.argv[2] == 'deploy'){
+    var lambda = require('../lib/lambda.js')
+    var apigateway = require('../lib/apigateway.js')
+    var deploy = require('../lib/deploy.js')
+    var dataProcess = require('../lib/dataProcess.js')
+    var packagers = require('../lib/packagers.js')
+    var SETTINGS = require('../lib/settings.js').constants
+
+    apigateway.purgeApi()
+      .then(packagers.buildUnifiedLambdaFunction)
+      .then(lambda.deployLambdaFunction)
+      .then(lambda.addResourceBasedPermissionToAPI)
+      .then(dataProcess.buildRootResources)
+      .then(deploy.deployResources)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err.stack))
+  } else if(process.argv[2] == 'runserver') {
+    require('../lib/server.js')
+  } else {
+    console.log('Bad argument, value, try again...');
+  }
+} else {
+  console.log('Add super helpfull help here... (so far try to add "deploy" or "runserver" argument)')
+}

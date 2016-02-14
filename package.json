@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/pedroorez/tutu.git"
   },
+  "bin": {
+    "tutu": "./bin/command"
+  },
   "keywords": [
     "AWS",
     "Lambda",
