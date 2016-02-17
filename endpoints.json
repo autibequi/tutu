@@ -1,0 +1,80 @@
+{
+  "Resources": [
+    {
+      "Endpoint": "clients",
+      "Path": "clients",
+      "Methods": ["GET"],
+      "Standalone": true,
+      "Parameters": ["ida", "pokemon", "id_date"],
+      "Resources": [
+        {
+          "Endpoint": "{clientId}",
+          "Resources": [
+            {
+              "Endpoint": "pricelists",
+              "Path": "clients/pricelists",
+              "Methods": ["GET"],
+              "Standalone": true,
+              "Resources": [
+                {
+                  "Endpoint": "{priceListId}",
+                  "Resources": [
+                    {
+                      "Endpoint": "roles",
+                      "Path": "clients/pricelists/roles",
+                      "Methods": ["GET"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Endpoint": "clients2",
+      "Path": "clients2",
+      "Methods": ["GET"]
+    }
+  ],
+  "Lambda": {
+    "Handler": "aws_modules/index.handler",
+    "MemorySize": 128,
+    "Runtime": "nodejs",
+    "Timeout": 6,
+    "Description": "Nuthing"
+  },
+  "ApiGateway": {
+    "RequestParameters": {
+      "integration.request.header.x-Authorization": "method.request.header.x-Authorization"
+    },
+    "Responses": [
+      {
+        "selectionPattern": "BAD REQUEST.*",
+        "statusCode": "400",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        }
+      },
+      {
+        "selectionPattern": "UNAUTHORIZED.*",
+        "statusCode": "401",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        }
+      },
+      {
+        "selectionPattern": null,
+        "statusCode": "200",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseModels": {},
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    ]
+  }
+}
