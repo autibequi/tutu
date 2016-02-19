@@ -8,15 +8,21 @@ if (process.argv[2]) {
     var dataProcess = require('../lib/dataProcess.js')
     var packagers = require('../lib/packagers.js')
     var SETTINGS = require('../lib/settings.js').constants
+    var deployPromise = Promise.resolve()
+    if(!(process.argv[3] && process.argv[3] == 'purgeless'))
+      deployPromise.then(apigateway.purgeApi)
 
-    apigateway.purgeApi()
-      .then(packagers.buildUnifiedLambdaFunction)
+    deployPromise.then(packagers.buildUnifiedLambdaFunction)
       .then(lambda.deployLambdaFunction)
       .then(lambda.addResourceBasedPermissionToAPI)
       .then(dataProcess.buildRootResources)
       .then(deploy.deployResources)
       .then((data) => console.log(data))
-      .catch((err) => console.log(err.stack))
+      .then(apigateway.createDeployment)
+      .catch((err) => {
+        console.log(err.stack)
+        process.exit(1)
+      })
   } else if(process.argv[2] == 'runserver') {
     require('../lib/server.js')
   } else if(process.argv[2] == 'run') {
