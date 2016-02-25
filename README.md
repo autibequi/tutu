@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/tutu.svg)](https://badge.fury.io/js/tutu)
+
 # tutu
 A simple deployer for APIs made with AWS ApiGateway and AWS Lambda.
 
