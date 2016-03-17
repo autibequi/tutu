@@ -9,6 +9,14 @@ var SETTINGS = require('../lib/settings.js').constants
 var deployPromise = Promise.resolve()
 
 if (process.argv[2]) {
+  if(process.argv[2] == 'deployStandalone'){
+    cloudwatchevents.purgeRules()
+      .catch((err) => {
+        console.log(err.stack)
+        process.exit(1)
+      })
+  }
+
   if(process.argv[2] == 'deploy'){
     if(!(process.argv[3] && process.argv[3] == 'purgeless'))
       deployPromise.then(apigateway.purgeApi)
