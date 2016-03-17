@@ -15,9 +15,7 @@ if (process.argv[2]) {
         console.log(err.stack)
         process.exit(1)
       })
-  }
-
-  if(process.argv[2] == 'deploy'){
+  } else if(process.argv[2] == 'deploy'){
     if(!(process.argv[3] && process.argv[3] == 'purgeless'))
       deployPromise.then(apigateway.purgeApi)
 
