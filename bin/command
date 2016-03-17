@@ -11,6 +11,7 @@ var deployPromise = Promise.resolve()
 if (process.argv[2]) {
   if(process.argv[2] == 'deployStandalone'){
     cloudwatchevents.purgeRules()
+      .then((data) => console.log(data))
       .catch((err) => {
         console.log(err.stack)
         process.exit(1)
