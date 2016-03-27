@@ -44,8 +44,12 @@ switch(process.argv[2]) {
 
 // Display Deployment Result
 var display = Promise.resolve()
-  .then((data) => console.log(data))
+  .then((data) => {
+    console.log('\nDeployment Finished');
+    console.log(data)
+  })
   .catch((err) => {
+    console.log('Deployment Error');
     console.log(err.stack)
     process.exit(1)
   })
