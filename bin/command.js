@@ -3,7 +3,7 @@ var tutu = require('./index.js')
 
 // Checks if any argument was provided
 if (!process.argv[2]){
-  console.log('Please, insert a command.')
+  console.log('Run "tutu help" for command list')
   process.exit(1)
 }
 
@@ -24,8 +24,20 @@ switch(process.argv[2]) {
   case 'run':
     require('./runner.js')
     break
+  case 'help':
+    console.log('-------------------------------------------------\n' +
+                '|                    Help                       |\n' +
+                '-------------------------------------------------\n' +
+                'deploy            - Deploy API\n' +
+                'purgeAndDeploy    - Purge and Deploy API\n' +
+                'deployStandalone  - Deploy Standalone Lambdas\n' +
+                'runserver         - Run ApiGateway local emulator\n' +
+                'run               - Test current folder function\n' +
+                '-------------------------------------------------')
+    break
   default:
-    console.log('Bad argument, value, try again...');
+    console.log('Bad argument. \n' +
+                'Run "tutu help" for command list');
     process.exit(1)
     break
 }
