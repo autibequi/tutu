@@ -8,10 +8,11 @@ var deployer = require('../lib/deploy.js')
 var dataProcess = require('../lib/dataProcess.js')
 var packagers = require('../lib/packagers.js')
 var cloudwatchevents = require('../lib/cloudwatchevents.js')
+var SETTINGS = require('../lib/settings.js')
 
 // Deploy Standalone Lambdas
 exports.deployStandaloneLambdas = () =>
-  cloudwatchevents.purgeRules()
+  cloudwatchevents.purgeRules(SETTINGS.PROJECT_PREFIX)
     .then(load.standaloneConfiguration)
     .then(deployer.deployStandalones)
 
