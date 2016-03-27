@@ -28,7 +28,7 @@ switch(process.argv[2]) {
     tutu.deploy().then(display)
     break
   case 'deployStandalone':
-    tutu.deployStandaloneLambdas().then(display)
+    tutu.deployStandaloneLambdas()
     break
   case 'runserver':
     require('../lib/server.js')
