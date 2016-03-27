@@ -1,0 +1,21 @@
+[
+  {
+    "Lambda": {
+      "Handler": "aws_modules/index.handler",
+      "MemorySize": 128,
+      "Runtime": "nodejs",
+      "Description": "desc",
+      "Timeout": 6
+    },
+    "Path": "clients/pricelists",
+    "CloudwatchEvents": {
+      "RuleName": "Hello",
+      "Name": "Rule.Name",
+      "Description": "Rule.Description",
+      "EventPattern": "Rule.EventPattern",
+      "RoleArn": "Rule.RoleArn",
+      "ScheduleExpression": "cron(0 12 * * ? *)",
+      "State": "'ENABLED'"
+    }
+  }
+]
