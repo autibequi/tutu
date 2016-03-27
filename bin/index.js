@@ -8,6 +8,7 @@ var deployer = require('../lib/deploy.js')
 var dataProcess = require('../lib/dataProcess.js')
 var packagers = require('../lib/packagers.js')
 var cloudwatchevents = require('../lib/cloudwatchevents.js')
+var logger = require('../lib/logger.js')
 var SETTINGS = require('../lib/settings.js')
 
 // Deploy Standalone Lambdas
@@ -16,16 +17,16 @@ exports.deployStandaloneLambdas = () =>
     .then(load.standaloneConfiguration)
     .then(deployer.deployStandalones)
     .then((data) => {
-      console.log('\nDeployment Finished');
+      logger.status('Deployment Finished');
       console.log(data)
     })
     .catch((err) => {
-      console.log('Deployment Error');
+      logger.status('Deployment Error');
       console.log(err.stack)
       process.exit(1)
     })
 
-    
+
 // Deploy API
 exports.deploy = () =>
   packagers.buildUnifiedLambdaFunction
