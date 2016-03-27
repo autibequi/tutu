@@ -12,8 +12,8 @@ var cloudwatchevents = require('../lib/cloudwatchevents.js')
 // Deploy Standalone Lambdas
 exports.deployStandaloneLambdas = () =>
   cloudwatchevents.purgeRules()
-    .then(cloudwatchevents.deployStandaloneLambdas)
     .then(load.standaloneConfiguration)
+    .then(deployer.deployStandalones)
 
 // Deploy API
 exports.deploy = () =>
