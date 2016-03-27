@@ -15,7 +15,17 @@ exports.deployStandaloneLambdas = () =>
   cloudwatchevents.purgeRules(SETTINGS.PROJECT_PREFIX)
     .then(load.standaloneConfiguration)
     .then(deployer.deployStandalones)
+    .then((data) => {
+      console.log('\nDeployment Finished');
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log('Deployment Error');
+      console.log(err.stack)
+      process.exit(1)
+    })
 
+    
 // Deploy API
 exports.deploy = () =>
   packagers.buildUnifiedLambdaFunction
