@@ -1,6 +1,18 @@
 #!/usr/bin/env node
 var tutu = require('./index.js')
 
+// Display Deployment Result
+var display = new Promise((resolve) => {})
+  .then((data) => {
+    console.log('\nDeployment Finished');
+    console.log(data)
+  })
+  .catch((err) => {
+    console.log('Deployment Error');
+    console.log(err.stack)
+    process.exit(1)
+  })
+
 // Checks if any argument was provided
 if (!process.argv[2]){
   console.log('Run "tutu help" for command list')
@@ -41,15 +53,3 @@ switch(process.argv[2]) {
     process.exit(1)
     break
 }
-
-// Display Deployment Result
-var display = Promise.resolve()
-  .then((data) => {
-    console.log('\nDeployment Finished');
-    console.log(data)
-  })
-  .catch((err) => {
-    console.log('Deployment Error');
-    console.log(err.stack)
-    process.exit(1)
-  })
