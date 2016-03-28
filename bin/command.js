@@ -1,23 +1,24 @@
 #!/usr/bin/env node
-var tutu = require('./index.js')
-
-// Display Deployment Result
-var display = new Promise((resolve) => {})
-  .then((data) => {
-    console.log('\nDeployment Finished');
-    console.log(data)
-  })
-  .catch((err) => {
-    console.log('Deployment Error');
-    console.log(err.stack)
-    process.exit(1)
-  })
-
+'use strict'
+let tutu = require('./index.js')
+let logger = require('../lib/logger.js')
 // Checks if any argument was provided
 if (!process.argv[2]){
   console.log('Run "tutu help" for command list')
   process.exit(1)
 }
+// Display Deployment Result
+let display = (data) =>
+  Promise.resolve(data)
+    .then((data) => {
+      console.log('\nDeployment Finished');
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log('Deployment Error');
+      console.log(err.stack)
+      process.exit(1)
+    })
 
 // switch to the correct option
 switch(process.argv[2]) {
@@ -28,7 +29,7 @@ switch(process.argv[2]) {
     tutu.deploy().then(display)
     break
   case 'deployStandalone':
-    tutu.deployStandaloneLambdas()
+    tutu.deployStandaloneLambdas().then(display)
     break
   case 'runserver':
     require('../lib/server.js')
