@@ -20,7 +20,7 @@ exports.deployStandaloneLambdas = () =>
 
 // Deploy API
 exports.deploy = () =>
-  packagers.buildUnifiedLambdaFunction
+  packagers.buildUnifiedLambdaFunction()
     .then(lambda.deployLambdaFunction)
     .then(lambda.addResourceBasedPermissionToAPI)
     .then(dataProcess.buildRootResources)
@@ -30,5 +30,5 @@ exports.deploy = () =>
 
 // Purge APIGateway and API
 exports.purgeAndDeploy = () =>
-  apigateway.purgeApi
+  apigateway.purgeApi()
     .then(exports.deploy)
