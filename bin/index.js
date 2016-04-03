@@ -23,6 +23,7 @@ exports.deploy = () =>
   packagers.buildUnifiedLambdaFunction()
     .then(lambda.deployLambdaFunction)
     .then(load.loadResources)
+    .then(dataProcess.buildResource)
     .then(deployer.deployResources)
     .then(apigateway.createDeployment)
 
