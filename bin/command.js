@@ -7,18 +7,20 @@ if (!process.argv[2]){
   console.log('Run "tutu help" for command list')
   process.exit(1)
 }
-// Display Deployment Result
-let display = (data) =>
-  Promise.resolve(data)
+
+let display = (data) => {
+  return Promise.resolve(data)
     .then((data) => {
-      console.log('\nDeployment Finished');
+      console.log('Deployment Finished');
       console.log(data)
+      console.log('-------------------');
     })
     .catch((err) => {
       console.log('Deployment Error');
       console.log(err.stack)
       process.exit(1)
     })
+}
 
 // switch to the correct option
 switch(process.argv[2]) {
