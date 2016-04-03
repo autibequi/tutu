@@ -22,9 +22,9 @@ exports.deployStandaloneLambdas = () =>
 exports.deploy = () =>
   packagers.buildUnifiedLambdaFunction()
     .then(lambda.deployLambdaFunction)
+    .then(load.loadResources)
     .then(deployer.deployResources)
     .then(apigateway.createDeployment)
-    .then(load.loadResources)
 
 
 // Purge APIGateway and API
