@@ -22,7 +22,6 @@ exports.deployStandaloneLambdas = () =>
 exports.deploy = () =>
   packagers.buildUnifiedLambdaFunction()
     .then(lambda.deployLambdaFunction)
-    .then(lambda.addResourceBasedPermissionToAPI)
     .then(dataProcess.buildRootResources)
     .then(deployer.deployResources)
     .then(apigateway.createDeployment)
