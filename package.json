@@ -27,7 +27,7 @@
   "homepage": "https://github.com/pedroorez/tutu#readme",
   "dependencies": {
     "archiver": "^0.21.0",
-    "aws-sdk": "^2.2.34",
+    "aws-sdk": "^2.3.0",
     "fs-finder": "^1.8.1"
   }
 }
