@@ -2,7 +2,7 @@
   "name": "tutu",
   "version": "2.0.0",
   "description": "A simple AWS Lambda and ApiGateway Deployer.",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/pedroorez/tutu.git"
   },
   "bin": {
-    "tutu": "./bin/command"
+    "tutu": "./bin/command.js"
   },
   "keywords": [
     "AWS",
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/pedroorez/tutu#readme",
   "dependencies": {
     "archiver": "^0.21.0",
-    "aws-sdk": "^2.2.34",
+    "aws-sdk": "^2.3.0",
     "fs-finder": "^1.8.1"
   }
 }
