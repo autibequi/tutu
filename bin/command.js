@@ -8,30 +8,38 @@ if (!process.argv[2]){
   process.exit(1)
 }
 
-let display = (data) => {
-  return Promise.resolve(data)
-    .then((data) => {
-      console.log('Deployment Finished');
-      console.log(data)
-      console.log('-------------------');
-    })
-    .catch((err) => {
-      console.log('Deployment Error');
-      console.log(err.stack)
-      process.exit(1)
-    })
-}
-
 // switch to the correct option
 switch(process.argv[2]) {
   case 'purgeAndDeploy':
-    tutu.purgeAndDeploy().then(display)
+    tutu.purgeAndDeploy()
+      .then((data) => {
+        console.log('Deployment Finished');
+        console.log(data)
+        console.log('-------------------');
+      })
+      .catch((err) => {
+        console.log('Deployment Error');
+        console.log(err)
+        console.log(err.stack)
+        process.exit(1)
+      })
     break
   case 'deploy':
-    tutu.deploy().then(display)
+    tutu.deploy()
+      .then((data) => {
+        console.log('Deployment Finished');
+        console.log(data)
+        console.log('-------------------');
+      })
+      .catch((err) => {
+        console.log('Deployment Error');
+        console.log(err)
+        console.log(err.stack)
+        process.exit(1)
+      })
     break
   case 'deployStandalone':
-    tutu.deployStandaloneLambdas().then(display)
+    tutu.deployStandaloneLambdas()
     break
   case 'runserver':
     require('../lib/server.js')
