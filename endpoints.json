@@ -49,6 +49,12 @@
     "RequestParameters": {
       "integration.request.header.x-Authorization": "method.request.header.x-Authorization"
     },
+    "RequestTemplates":{
+      "Authorization": "$input.params('x-Authorization')",
+      "method": "$context.httpMethod",
+      "endpoint": "$context.resourcePath",
+      "data": "$input.json('$')"
+    },
     "Responses": [
       {
         "selectionPattern": "BAD REQUEST.*",
