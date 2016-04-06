@@ -8,6 +8,15 @@
       "Parameters": ["ida", "pokemon", "id_date"],
       "Resources": [
         {
+          "Standalone": true,
+          "Path": "clients",
+          "CloudwatchEvents":{
+            "Name": "Hello",
+            "Description": "Not important",
+            "ScheduleExpression": "rate(5 minutes)"
+          }
+        },
+        {
           "Endpoint": "{clientId}",
           "Resources": [
             {
