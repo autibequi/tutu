@@ -13,7 +13,7 @@ describe('APIGateway method JSON setup building', function() {
       }
 
       var resource = {
-        "Methods": ["GET", "POST"]
+        "Methods": ["GET", {"httpMethod":"POST", "Lambda": { "Handler": "aws_modules/index.handler" }}]
       }
 
       var responseParams = dataProcess.buildOptionsResponseParameters(resource)
