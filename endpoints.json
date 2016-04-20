@@ -22,7 +22,7 @@
             {
               "Endpoint": "pricelists",
               "Path": "clients/pricelists",
-              "Methods": ["GET"],
+              "Methods": ["GET", {"httpMethod":"POST", "Lambda": { "Handler": "aws_modules/index.handler" }}],
               "Standalone": true,
               "Resources": [
                 {
