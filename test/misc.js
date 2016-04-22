@@ -1,5 +1,6 @@
 var assert = require('chai').assert;
 var misc = require("../lib/misc.js");
+var apigateway = require("../lib/AWS/apigateway.js");
 
 
 var foo = function(item){
@@ -42,5 +43,31 @@ describe('MISC Testing', function() {
             done()
           })
     });
+  });
+});
+
+
+describe('Misc Integration Testing', function() {
+  describe('Map Promised used on ApiGateway Retrier', function (done) {
+    it('Should loop and make all the requests on order than return an array', function () {
+
+      var dict = {
+        array: [{}, {}, {}, {}]
+      }
+
+      var ans = {
+        array: ['OKAY!', 'OKAY!', 'OKAY!', 'OKAY!']
+      }
+
+      return misc.mapPromises(dict, "array", apigateway.okay)
+          .then((data) => {
+            assert.equal(JSON.stringify(ans), JSON.stringify(data));
+          })
+          .catch((err) => {
+            done("shouldnt trow err!")
+          })
+    });
+
+
   });
 });
