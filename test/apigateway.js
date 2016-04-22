@@ -37,5 +37,20 @@ describe('APIGateway', function() {
           })
     });
 
+
+    it('Should Return a valid promise when one of the retries resolve ', function (done) {
+      var params = {
+        value: "test"
+      }
+
+      return apigateway.okay(params)
+          .then((data) => {
+            done()
+          })
+          .catch((err) => {
+            done('Shouldnt Reject()')
+          })
+    });
+
   });
 });
