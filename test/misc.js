@@ -69,5 +69,25 @@ describe('Misc Integration Testing', function() {
     });
 
 
+    it('Should loop and make all the requests on order than return an array (COMPOSED VERSION)', function () {
+
+      var dict = {
+        array: [{value: 1}, {value: 2}, {value: 3}, {value: 4}]
+      }
+
+      var ans = {
+        array: ['OKAY!', 'OKAY!', 'OKAY!', 'OKAY!']
+      }
+
+      return misc.mapPromises(dict, "array", apigateway.compose)
+          .then((data) => {
+            assert.equal(JSON.stringify(ans), JSON.stringify(data));
+          })
+          .catch((err) => {
+            done("shouldnt trow err!")
+          })
+    });
+
+
   });
 });
