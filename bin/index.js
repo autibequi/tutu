@@ -12,12 +12,6 @@ let cloudwatchevents = require('../lib/cloudwatchevents.js')
 let logger = require('../lib/logger.js')
 var SETTINGS = require('../lib/settings.js')
 
-// Deploy Standalone Lambdas
-exports.deployStandaloneLambdas = () =>
-  cloudwatchevents.purgeRules(SETTINGS.PROJECT_PREFIX)
-    .then(load.standaloneConfiguration)
-    .then(deployer.deployStandalones)
-
 // Deploy API
 exports.deploy = () =>
   packagers.buildUnifiedLambdaFunction()
@@ -26,7 +20,6 @@ exports.deploy = () =>
     .then(dataProcess.buildResource)
     .then(deployer.deployResources)
     .then(apigateway.createDeployment)
-
 
 // Purge APIGateway and API
 exports.purgeAndDeploy = () =>
